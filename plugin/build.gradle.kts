@@ -2,6 +2,7 @@ plugins {
     kotlin("jvm")
     `java-gradle-plugin`
     `maven-publish`
+    id("com.gradle.plugin-publish")
     id("io.gitlab.arturbosch.detekt")
 }
 
@@ -37,7 +38,16 @@ gradlePlugin {
     plugins.creating {
         id = "com.demack.codeartifact"
         implementationClass = "com.demack.codeartifact.plugin.CodeArtifactPlugin"
+        description = "Facilitates connecting to AWS CodeArtifact"
+        displayName = "CodeArtifact Gradle Plugin"
     }
+}
+
+pluginBundle {
+    website = "https://github.com/DeMack/codeartifact-plugin"
+    vcsUrl = "https://github.com/DeMack/codeartifact-plugin.git"
+    description = "Facilitates connecting to AWS CodeArtifact"
+    tags = listOf("aws", "codeartifact", "code", "artifact")
 }
 
 java {
