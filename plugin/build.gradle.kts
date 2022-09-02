@@ -35,11 +35,13 @@ dependencies {
 
 gradlePlugin {
     // Define the plugin
-    plugins.creating {
-        id = "com.demack.codeartifact"
-        implementationClass = "com.demack.codeartifact.plugin.CodeArtifactPlugin"
-        description = "Facilitates connecting to AWS CodeArtifact"
-        displayName = "CodeArtifact Gradle Plugin"
+    plugins {
+        create("codeartifact-plugin") {
+            id = "com.demack.codeartifact"
+            implementationClass = "com.demack.codeartifact.plugin.CodeArtifactPlugin"
+            description = "Facilitates connecting to AWS CodeArtifact"
+            displayName = "CodeArtifact Gradle Plugin"
+        }
     }
 }
 
