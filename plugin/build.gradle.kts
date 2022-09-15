@@ -6,7 +6,7 @@ plugins {
     id("io.gitlab.arturbosch.detekt")
 }
 
-group = "com.demack"
+group = "io.github.demack"
 version = "0.0.1"
 
 val kotestVersion: String by project
@@ -34,10 +34,9 @@ dependencies {
 }
 
 gradlePlugin {
-    // Define the plugin
     plugins {
         create("codeartifact-plugin") {
-            id = "com.demack.codeartifact"
+            id = "io.github.demack.codeartifact"
             implementationClass = "com.demack.codeartifact.plugin.CodeArtifactPlugin"
             description = "Facilitates connecting to AWS CodeArtifact"
             displayName = "CodeArtifact Gradle Plugin"
