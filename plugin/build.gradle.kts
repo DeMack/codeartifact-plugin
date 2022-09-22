@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "io.github.demack"
-version = "0.0.1"
+version = "0.0.2"
 
 val kotestVersion: String by project
 val mockkVersion: String by project
@@ -33,6 +33,16 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
 
+@Suppress("UnstableApiUsage")
+configurations.forEach {
+    if (it.isCanBeConsumed) {
+        it.attributes.attribute(
+            GradlePluginApiVersion.GRADLE_PLUGIN_API_VERSION_ATTRIBUTE,
+            objects.named("7.0")
+        )
+    }
+}
+
 gradlePlugin {
     plugins {
         create("codeartifact-plugin") {
@@ -52,18 +62,20 @@ pluginBundle {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    withJavadocJar()
+    withSourcesJar()
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 }
 
 tasks.withType<io.gitlab.arturbosch.detekt.Detekt> {
-    jvmTarget = JavaVersion.VERSION_17.toString()
+    jvmTarget = JavaVersion.VERSION_1_8.toString()
     ignoreFailures = true
     buildUponDefaultConfig = true
     autoCorrect = true
