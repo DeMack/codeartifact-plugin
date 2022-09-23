@@ -27,7 +27,8 @@ see:
 [DefaultCredentialsProvider](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/auth/credentials/DefaultCredentialsProvider.html)
 
 Once you have decided your general authentication method, this plugin can be applied to a Gradle
-[Initialization Script](https://docs.gradle.org/current/userguide/init_scripts.html) as in the below:
+[Initialization Script](https://docs.gradle.org/current/userguide/init_scripts.html) as in the below. Because of the way
+Gradle handles init scripts, the plugin cannot be applied by the ID - it has to be applied with the class itself.
 
 ```kotlin
 initscript {
@@ -36,11 +37,11 @@ initscript {
         gradlePluginPortal()
     }
     dependencies {
-        classpath("com.demack:codeartifact-plugin:{plugin-version}")
+        classpath("io.github.demack.codeartifact:io.github.demack.codeartifact.gradle.plugin:{plugin-version}")
     }
 }
 
-apply(plugin = "com.demack.codeartifact")
+apply<com.demack.codeartifact.plugin.CodeArtifactPlugin>()
 ```
 
 **A note about profiles**
